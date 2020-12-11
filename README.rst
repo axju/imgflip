@@ -1,4 +1,4 @@
-PyImgflip
+imgflip
 =========
 A python api to imgflip.
 
@@ -7,14 +7,14 @@ Install
 -------
 ::
 
-  pip install pyimgflip
+  pip install imgflip
 
 
 How to use?
 -----------
 ::
 
-  python -m pyimgflip.cli
+  python -m imgflip.cli
 
 
 Development
@@ -26,9 +26,14 @@ setup::
 
 check src::
 
-  flake8 pyimgflip
+  flake8 imgflip
 
-Check readme::
+check readme::
 
   python setup.py sdist
   twine check dist/*
+
+make package::
+
+  python setup.py sdist bdist_wheel
+  python -m twine upload dist/*

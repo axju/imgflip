@@ -7,15 +7,15 @@ def readme():
 
 
 setup(
-    name="pyimgflip",
+    name="imgflip",
     version="0.0.1",
     author="axju",
     author_email="moin@axju.de",
     description="api to imgflip",
     long_description=readme(),
     long_description_content_type='text/x-rst',
-    url="https://github.com/axju/pyimgflip",
-    packages=['pyimgflip'],
+    url="https://github.com/axju/imgflip",
+    packages=['imgflip'],
     install_requires=[
         'requires'
     ],

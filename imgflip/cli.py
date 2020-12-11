@@ -1,7 +1,7 @@
 import getpass
 import webbrowser
 
-from pyimgflip.api import get_memes, caption_image
+from imgflip.api import get_memes, caption_image
 
 
 memes = get_memes()
