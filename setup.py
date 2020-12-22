@@ -8,7 +8,8 @@ def readme():
 
 setup(
     name="imgflip",
-    version="0.0.1",
+    use_scm_version=True,
+    setup_requires=['setuptools_scm'],
     author="axju",
     author_email="moin@axju.de",
     description="api to imgflip",
