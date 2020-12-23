@@ -1,19 +1,32 @@
-import requests
+from imgflip.utils import ResponseImage, get_memes, caption_image
 
 
-def get_memes(url='https://api.imgflip.com/get_memes'):
-    r = requests.get(url)
-    data = r.json()
-    return data['data']['memes']
+class Client(object):
+    """docstring for Client."""
 
+    def __init__(self, username, password, root_url='https://api.imgflip.com/'):
+        super(Client, self).__init__()
+        self.username = username
+        self.password = password
+        self.urls = {
+            'get_memes': root_url + 'get_memes',
+            'caption_image': root_url + 'caption_image',
+        }
+        self.memes = []
 
-def caption_image(template_id, username, password, text0, text1, url='https://api.imgflip.com/caption_image'):
-    data = {
-        'template_id': template_id,
-        'username': username,
-        'password': password,
-        'text0': text0,
-        'text1': text1,
-    }
-    r = requests.post(url, data=data)
-    return r.json()
+    def get_memes(self, update=False):
+        if len(self.memes) == 0 or update:
+            self.memes = get_memes(url=self.urls['get_memes'])
+        return self.memes
+
+    def caption_image(self, id=None, index=-1, **kwargs):
+        if id is None and index in range(len(self.memes)):
+            id = self.memes[index].get('id')
+
+        if id is None:
+            print('Error')
+
+        text0 = kwargs.get('text0')
+        text1 = kwargs.get('text1')
+        data = caption_image(id, self.username, self.password, text0, text1, url=self.urls['caption_image'])
+        return ResponseImage(data['data']['url'])

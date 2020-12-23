@@ -1,7 +1,6 @@
 import getpass
-import webbrowser
 
-from imgflip.api import get_memes, caption_image
+from imgflip.utils import ResponseImage, get_memes, caption_image
 
 
 def main():
@@ -15,10 +14,11 @@ def main():
     password = getpass.getpass()
     text0 = input('Text 0: ')
     text1 = input('Text 1: ')
-    image = caption_image(template_id, username, password, text0, text1)
-    print(image)
+    data = caption_image(template_id, username, password, text0, text1)
+    print(data)
+    image = ResponseImage(data['data']['url'])
 
-    webbrowser.open(image['data']['url'], new=2)
+    image.webbrowser()
 
 
 if __name__ == '__main__':
