@@ -15,6 +15,8 @@ How to use?
 ::
 
   python -m imgflip.cli
+  python -m imgflip
+  imgflip
 
 
 Development

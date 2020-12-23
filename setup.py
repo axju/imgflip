@@ -16,13 +16,16 @@ setup(
     long_description=readme(),
     long_description_content_type='text/x-rst',
     url="https://github.com/axju/imgflip",
-    packages=['imgflip'],
-    install_requires=[
-        'requires'
-    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
+    packages=['imgflip'],
+    install_requires=[
+        'requires'
+    ],
+    entry_points={
+        'console_scripts': ['imgflip=imgflip.cli:main'],
+    },
 )
