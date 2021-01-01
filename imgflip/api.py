@@ -4,7 +4,7 @@ from imgflip.utils import ResponseImage, get_memes, caption_image
 class Client(object):
     """docstring for Client."""
 
-    def __init__(self, username, password, root_url='https://api.imgflip.com/'):
+    def __init__(self, username='', password='', root_url='https://api.imgflip.com/'):
         super(Client, self).__init__()
         self.username = username
         self.password = password
@@ -20,8 +20,12 @@ class Client(object):
         return self.memes
 
     def caption_image(self, id=None, index=-1, **kwargs):
-        if id is None and index in range(len(self.memes)):
-            id = self.memes[index].get('id')
+        if id is None:
+            if len(self.memes) == 0:
+                self.get_memes()
+            print(len(self.memes), index, index in range(len(self.memes)))
+            if index in range(len(self.memes)):
+                id = self.memes[index].get('id')
 
         if id is None:
             print('Error')
