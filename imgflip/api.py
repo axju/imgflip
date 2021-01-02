@@ -1,3 +1,4 @@
+import logging
 from imgflip.utils import ResponseImage, get_memes, caption_image
 
 
@@ -6,6 +7,8 @@ class Client(object):
 
     def __init__(self, username='', password='', root_url='https://api.imgflip.com/'):
         super(Client, self).__init__()
+        self.logger = logging.getLogger('{}.{}'.format(__name__, self.__class__.__name__))
+        self.logger.debug('create')
         self.username = username
         self.password = password
         self.urls = {
@@ -23,7 +26,7 @@ class Client(object):
         if id is None:
             if len(self.memes) == 0:
                 self.get_memes()
-            print(len(self.memes), index, index in range(len(self.memes)))
+            self.logger.debug('%i %i %s', len(self.memes), index, index in range(len(self.memes)))
             if index in range(len(self.memes)):
                 id = self.memes[index].get('id')
 

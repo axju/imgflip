@@ -1,3 +1,4 @@
+import logging
 import getpass
 from argparse import ArgumentParser
 
@@ -8,6 +9,7 @@ from imgflip.api import Client
 def parse_args():
     parser = ArgumentParser(prog='imgflip', description='Create memes with the api from Imgflip.')
     parser.add_argument('-V', '--version', action='version', version=__version__)
+    parser.add_argument('-d', '--debug', action='store_true', help='Print debug infos')
 
     subparsers = parser.add_subparsers(dest='action', description='memes caption')
     subparsers.add_parser('memes')
@@ -23,6 +25,12 @@ def parse_args():
 
 def main():
     args, parser = parse_args()
+    if args.debug:
+        logger = logging.getLogger('imgflip.api.Client')
+        logger.setLevel(logging.DEBUG)
+        ch = logging.StreamHandler()
+        ch.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+        logger.addHandler(ch)
     client = Client()
     if args.action == 'memes':
         for i, meme in enumerate(client.get_memes()):
