@@ -4,15 +4,15 @@ pipeline {
         stage('setup') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh "pip install --user --upgrade pip"
-                    sh "pip install --user ."
+                    sh "pip install --upgrade pip"
+                    sh "pip install ."
                 }
             }
         }
         stage('test - coverage') {
             steps {
                 withEnv(["HOME=${env.WORKSPACE}"]) {
-                    sh "pip install --user --upgrade coverage pytest"
+                    sh "pip install --upgrade coverage pytest"
                     sh "python -m coverage run --branch --source imgflip -m pytest --junitxml junittest-coverage.xml"
                     sh "python -m coverage xml"
                 }
