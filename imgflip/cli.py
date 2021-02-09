@@ -6,7 +6,7 @@ from imgflip import __version__
 from imgflip.api import Client
 
 
-def parse_args():
+def parse_args(args=None):
     parser = ArgumentParser(prog='imgflip', description='Create memes with the api from Imgflip.')
     parser.add_argument('-V', '--version', action='version', version=__version__)
     parser.add_argument('-d', '--debug', action='store_true', help='Print debug infos')
@@ -19,12 +19,11 @@ def parse_args():
     parser_caption.add_argument('-i', '--index', type=int, help='Meme index')
     parser_caption.add_argument('text', type=str, nargs='+', help='The text for the image')
 
-    args = parser.parse_args()
-    return args, parser
+    return parser.parse_args(args), parser
 
 
-def main():
-    args, parser = parse_args()
+def main(args=None):
+    args, parser = parse_args(args)
     if args.debug:
         logger = logging.getLogger('imgflip.api.Client')
         logger.setLevel(logging.DEBUG)

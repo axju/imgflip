@@ -23,17 +23,18 @@ Development
 -----------
 setup::
 
-  python -m pip install --upgrade pip wheel setuptools flake8 twine
+  python -m pip install --upgrade pip wheel setuptools coverage pytest flake8 pylint twine
   python -m pip install -e .
 
 run tests::
 
-  coverage run --source=imgflip -m unittest discover
+  python -m coverage run --branch --source imgflip -m pytest
   coverage report -m
 
 check src::
 
-  flake8 imgflip
+  python -m flake8 imgflip
+  python -m pylint --rcfile=setup.cfg imgflip
 
 check readme::
 

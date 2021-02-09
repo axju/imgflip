@@ -2,11 +2,11 @@ import webbrowser
 import requests
 
 
-class ResponseImage(object):
+class ResponseImage:
     """docstring for ."""
 
     def __init__(self, url):
-        super(ResponseImage, self).__init__()
+        super().__init__()
         self.url = url
 
     def webbrowser(self):
